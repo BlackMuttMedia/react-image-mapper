@@ -174,7 +174,7 @@ export default class ImageMapper extends Component {
 			const center = this.computeCenter(area);
 			const extendedArea = { ...area, scaledCoords, center };
 			return (
-				<area key={area._id || index} shape={area.shape} coords={scaledCoords.join(',')}
+				<area key={area._id || index} shape={area.shape} coords={scaledCoords.join(',')} alt={area.alt || ""}
 					onMouseEnter={this.hoverOn.bind(this, extendedArea, index)}
 					onMouseLeave={this.hoverOff.bind(this, extendedArea, index)}
 					onMouseMove={this.mouseMove.bind(this, extendedArea, index)}
@@ -186,7 +186,7 @@ export default class ImageMapper extends Component {
 	render() {
 		return (
 			<div style={this.styles.container} ref={node => this.container = node}>
-				<img style={this.styles.img} src={this.props.src} useMap={`#${this.state.map.name}`} alt=""
+				<img style={this.styles.img} src={this.props.src} useMap={`#${this.state.map.name}`} alt={this.props.alt || ""}
 					 ref={node => this.img = node} onLoad={this.initCanvas}
 					 onClick={this.imageClick.bind(this)}
 					 onMouseMove={this.imageMouseMove.bind(this)}/>
